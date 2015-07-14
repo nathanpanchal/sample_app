@@ -6,7 +6,8 @@ class UserTest < ActiveSupport::TestCase
   # end
 
   def setup
-    @test_user = User.new(name: "Example User", email: "user@example.com")
+    @test_user = User.new(name: "Example User", email: "user@example.com",
+      password: 'foobar', password_confirmation: 'foobar')
   end
 
   test "should be valid" do
@@ -33,7 +34,7 @@ class UserTest < ActiveSupport::TestCase
     assert_not @test_user.valid?
   end
 
-  test "email validatoin should accept valid addresses" do
+  test "should accept valid email addresses" do
     valid_addresses = %w[user@example.com USER@foo.COM A_US-ER@foo.bar.org 
                                   first.last@foo.jp alice+bob@baz.cn]
     valid_addresses.each do |valid_address|
@@ -42,7 +43,7 @@ class UserTest < ActiveSupport::TestCase
     end
   end
 
-  test "email validation should reject invalid addresses" do
+  test "should reject invalid email addresses" do
     invalid_addresses = %w[user@example,com user_at_foo.org user.name@example.
                            foo@bar_baz.com foo@bar+baz.com]
     invalid_addresses.each do |invalid_address|
