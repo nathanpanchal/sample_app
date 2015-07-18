@@ -124,6 +124,26 @@ input {
   height: auto !important;
 }
 
+#error_explanation {
+  color: red;
+  ul {
+    color: red;
+    margin: 0 0 30px 0;
+  }
+}
+
+.field_with_errors {
+  color: red;
+  input {
+    border-color: red;
+  }
+  // does not work
+  // @extend .has-error;
+  // .form-control {
+  //   color: $state-danger-text;
+  // }
+}
+
 /* sidebar */
 
 aside {
