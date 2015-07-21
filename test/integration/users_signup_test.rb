@@ -9,6 +9,8 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
         password_confirmation: "bar" }
     end
     assert_template 'users/new'
+    assert_select 'div#error_explanation'
+    assert_select 'div.alert-danger'
   end
 
   test "A valid signup should incrememnt user count by 1" do
