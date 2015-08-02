@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  attr_accessor :remember_token
+
   # normalizes the emails saved to the database
   before_save {self.email.downcase!}
   
