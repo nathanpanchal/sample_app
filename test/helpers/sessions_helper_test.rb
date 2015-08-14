@@ -7,7 +7,7 @@ class SessionsHelperTest < ActionView::TestCase
     remember(@user)
   end
 
-  test 'current_user returns correct user when session is nil' do
+  test 'current_user returns the correct user when session is nil' do
     assert_equal @user, current_user
   end
 
