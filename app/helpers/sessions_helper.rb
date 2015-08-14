@@ -18,7 +18,7 @@ module SessionsHelper
     cookies.delete(:remember_token)
   end
 
-  # Returns the user corresponding to the remember token cookie.
+  # Returns the user corresponding to the remember token cookie otherwise returns nil.
   def current_user
     if (user_id = session[:user_id])
       @current_user ||= User.find_by(id: user_id)
@@ -30,6 +30,7 @@ module SessionsHelper
         @current_user = user
       end
     end
+    # if either test case fails the method returns 'nil'
   end
 
   # Returns true if the user is logged in, false otherwise.
