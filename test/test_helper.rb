@@ -26,7 +26,7 @@ class ActiveSupport::TestCase
     # Used for model and controller tests where we cannot post to the sessions path. Insead we must
     # modify the session hash directly.
     else
-      session[:user_id] = user_id
+      session[:user_id] = user.id
     end
   end
 
