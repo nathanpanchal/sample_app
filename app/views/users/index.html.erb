@@ -4,12 +4,7 @@
 <%= will_paginate %>
 
 <ul class="users">
-  <% @users.each do |user| %>
-    <li>
-      <!-- this causes rails to look for a _user.html.erb partial-->
-      <%= render user %>
-    </li>
-  <% end %>
+  <%= render @users %>
 </ul>
 
 <%= will_paginate %>
