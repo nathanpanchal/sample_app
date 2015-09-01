@@ -2,7 +2,8 @@
   <%= gravatar_for user, size: 50 %>
   <!-- user.name is the link text and 'user' is the destination-->
   <%= link_to user.name, user %>
-  <% if current_user.admin? && current_user?(user) %>
+  <!-- if the current user is an admin and do not display if they are the current user-->
+  <% if current_user.admin? && !current_user?(user) %>
     | <%= link_to 'delete', user, method: :delete, data: { confirm: "You sure?" } %>
   <% end %>
 </li>
