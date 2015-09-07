@@ -61,7 +61,7 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should not allow the admin attribute to be edited via the web" do
-    
+
   end
 
 end
