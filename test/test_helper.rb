@@ -23,7 +23,7 @@ class ActiveSupport::TestCase
     remember_me = options[:remember_me] || '1'
     if integration_test?
       post login_path, session: {email: user.email, password: password, remember_me: remember_me}
-    # Used for model and controller tests where we cannot post to the sessions path. Insead we must
+    # Used for model and controller tests where we cannot post to the sessions path. Instead we must
     # modify the session hash directly.
     else
       session[:user_id] = user.id
