@@ -1,9 +1,6 @@
 class User < ActiveRecord::Base
   attr_accessor :remember_token
-
-  # normalizes the emails saved to the database
-  before_save {self.email.downcase!}
-
+  before_save :downcase_email
   before_create :create_activation_digest
   
   # validates the presence and length of the name string
@@ -49,4 +46,17 @@ class User < ActiveRecord::Base
     return false if remember_digest.nil?
     BCrypt::Password.new(remember_digest).is_password?(remember_token)
   end
+
+  private
+
+    # normalizes emails
+    def downcase_email
+      self.email = email.downcase
+    end
+
+    # creates and assigns the activation token and digest
+    def create_activation_digest
+      self.activation_token = User.new_token
+      self.activation_digest = User.digest(activation_token)
+    end
 end
