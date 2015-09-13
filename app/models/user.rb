@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
 
   # normalizes the emails saved to the database
   before_save {self.email.downcase!}
+
+  before_create :create_activation_digest
   
   # validates the presence and length of the name string
   validates :name, presence: true, length: {maximum: 50}
