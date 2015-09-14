@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessor :remember_token
+  attr_accessor :remember_token, :activation_token
   before_save :downcase_email
   before_create :create_activation_digest
   
@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
     BCrypt::Password.create(string, cost: cost)
   end
 
-  # Returns a random token.
+  # Class method that returns a URL safe random string
   def self.new_token
     SecureRandom.urlsafe_base64
   end
