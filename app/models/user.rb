@@ -47,7 +47,7 @@ class User < ActiveRecord::Base
     # it is included for readability.
     digest = self.send("#{attribute}_digest")
     return false if digest.nil?
-    Bcrypt::Password.new(digest).is_password?(token)
+    BCrypt::Password.new(digest).is_password?(token)
   end
 
   private
