@@ -17,14 +17,16 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     assert_select 'div.alert-danger'
   end
 
-  test "A valid signup should incrememnt user count by 1" do
+  test "A valid signup information with account activation" do
     get signup_path
     assert_difference 'User.count', 1 do
-      post_via_redirect users_path user: { name: "Non Blank",
+      post users_path, user: { name: "Example User",
                                            email: "user@valid.com",
                                            password: "password",
                                            password_confirmation: "password" }
     end
+    assert_equal 1, ActionMailer::Base.deliveries.size
+    user = assigns(:user)
     # assert_template 'users/show'
     # assert_not flash.empty?
     # assert is_logged_in?
