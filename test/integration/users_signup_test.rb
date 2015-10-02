@@ -27,6 +27,8 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     end
     assert_equal 1, ActionMailer::Base.deliveries.size
     user = assigns(:user)
+    assert_not user.activated?
+
     # assert_template 'users/show'
     # assert_not flash.empty?
     # assert is_logged_in?
