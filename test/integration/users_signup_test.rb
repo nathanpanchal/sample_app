@@ -31,6 +31,8 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     # Attempt to log in before activation.
     log_in_as(user)
     assert_not is_logged_in?
+    # Valid token, wrong email
+    get edit_account_activatin_path('invalid token')
     # assert_template 'users/show'
     # assert_not flash.empty?
     # assert is_logged_in?
