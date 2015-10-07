@@ -24,6 +24,8 @@ class SessionsController < ApplicationController
       # render the sessions view "new"
       render 'new'
     end
+  end
+
 
 
   def destroy
