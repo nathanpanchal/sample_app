@@ -50,6 +50,11 @@ class User < ActiveRecord::Base
     BCrypt::Password.new(digest).is_password?(token)
   end
 
+  def activate
+    update_attribute(:activated, true)
+    update_attribute(:activated_at, Time.zone.now)
+  end
+
   private
 
     # normalizes emails
@@ -62,4 +67,5 @@ class User < ActiveRecord::Base
       self.activation_token = User.new_token
       self.activation_digest = User.digest(activation_token)
     end
+
 end
