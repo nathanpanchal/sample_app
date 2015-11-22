@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class UserMailerTest < ActionMailer::TestCase
-  test "account_activation" do
+  test 'account_activation' do
     user = users(:michael)
     user.activation_token = User.new_token
     mail = UserMailer.account_activation(user)
@@ -14,7 +14,15 @@ class UserMailerTest < ActionMailer::TestCase
   end
 
   test 'password _reset' do
+    # Celect a fixture
     user = users(:michael)
+    # Create a reset token and assign it to the reset_token attribute
     user.reset_token = User.new_token
+    # send the password reset mailer template
+    mail = UserMailer.password_reset(user)
+    # Assert that the template subject is correct
+    assert_equal 'Password reset', mail.subject
+    assert_equal [user.email], mail.to
+
   end
 end
