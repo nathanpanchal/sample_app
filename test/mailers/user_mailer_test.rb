@@ -13,8 +13,8 @@ class UserMailerTest < ActionMailer::TestCase
     assert_match CGI::escape(user.email), mail.body.encoded
   end
 
-  test 'password _reset' do
-    # Celect a fixture
+  test 'password_reset' do
+    # Select a fixture
     user = users(:michael)
     # Create a reset token and assign it to the reset_token attribute
     user.reset_token = User.new_token
@@ -23,6 +23,5 @@ class UserMailerTest < ActionMailer::TestCase
     # Assert that the template subject is correct
     assert_equal 'Password reset', mail.subject
     assert_equal [user.email], mail.to
-
   end
 end
