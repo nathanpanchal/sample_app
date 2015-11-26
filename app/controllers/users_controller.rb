@@ -71,7 +71,8 @@ class UsersController < ApplicationController
 
     # Confirms an admin user.
     def admin_user
-      # Employs the boolean nature of the admin attribute on the users table. If the current user is not an admin.
+      # Employs the boolean nature of the admin attribute on the users table.
+      # If the current user is not an admin.
       redirect_to(root_url) unless current_user.admin?
     end
 end
