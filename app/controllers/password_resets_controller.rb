@@ -22,6 +22,12 @@ class PasswordResetsController < ApplicationController
   def edit
   end
 
+  def update
+    if params[:user][:password].empty?
+      @user.errors.add()
+    end
+  end
+
   def get_user
     @user = User.find_by(email: params[:email])
   end
