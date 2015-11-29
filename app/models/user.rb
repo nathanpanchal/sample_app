@@ -43,8 +43,8 @@ class User < ActiveRecord::Base
 
   # Returns true if the given token matches the digest.
   def authenticated?(attribute, token)
-    # Self is not necessary here because we are already inside the User model. However
-    # it is included for readability.
+    # Self is not necessary here because we are already inside the User model.
+    # However it is included for readability.
     digest = self.send("#{attribute}_digest")
     return false if digest.nil?
     BCrypt::Password.new(digest).is_password?(token)
