@@ -29,8 +29,7 @@ class PasswordResetsController < ApplicationController
       @user.errors.add(:password, 'cant be empty')
       # Render the edit form again
       render 'edit'
-    # If the submitted form contains both a valid password and confirmation
-    # then submit the form.
+    # If the submitted form contains both a valid password and confirmation.
     elsif @user.update_attributes(user_params)
       log_in @user
       flash[:success] = 'Password has been reset.'
