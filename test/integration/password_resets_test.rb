@@ -1,7 +1,11 @@
 require 'test_helper'
 
 class PasswordResetsTest < ActionDispatch::IntegrationTest
-  # test "the truth" do
-  #   assert true
-  # end
+
+  def setup
+    # clears all pending test deliveries
+    ActionMailer::Base.deliveries.clear
+    @user = user(:michael)
+  end
+
 end
