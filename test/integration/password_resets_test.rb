@@ -10,7 +10,6 @@ class PasswordResetsTest < ActionDispatch::IntegrationTest
 
   # This test is too long. I should break it into sub tests
   test 'password resets' do
-
     # --Generate password reset token via the forgot password form--
     get new_password_reset_path
     assert_template 'password_resets/new'
@@ -28,7 +27,6 @@ class PasswordResetsTest < ActionDispatch::IntegrationTest
     assert_equal 1, ActionMailer::Base.deliveries.size
     assert_not flash.empty?
     assert_redirected_to root_url
-
     # --Password reset form--
     user = assigns(:user)
     get edit_password_reset_path(user.reset_token, email: '')
