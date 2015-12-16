@@ -47,6 +47,7 @@ class PasswordResetsController < ApplicationController
 
     # Before filters
 
+    # @user is a falsy object if user does not exist
     def get_user
       @user = User.find_by(email: params[:email])
     end

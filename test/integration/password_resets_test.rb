@@ -8,7 +8,6 @@ class PasswordResetsTest < ActionDispatch::IntegrationTest
     @user = users(:michael)
   end
 
-  # This test is too long. I should break it into sub tests
   test 'password resets' do
     # --Generate password reset token via the forgot password form--
     get new_password_reset_path
@@ -29,6 +28,7 @@ class PasswordResetsTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_url
     # --Password reset form--
     user = assigns(:user)
+    # submit email that does not exst in the system. Code should redirect to root URL
     get edit_password_reset_path(user.reset_token, email: '')
     assert_redirected_to root_url
     # Submit inactive user
