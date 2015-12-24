@@ -61,8 +61,15 @@ class PasswordResetsTest < ActionDispatch::IntegrationTest
     assert_redirected_to user
   end
 
-  test 'expired token' do
-
+  test 'expired password reset token' do
+    get new_password_reset_path
+    post password_resets_path, password_reset: {email: @user.email}
+    @user = assigns(:user)
+    # expires the password reset token
+    @user.update_attribute(:reset_sent_at, 3.hours.ago)
+    patch password_reset_path(@user.reset_token),
+      email: @user.email,
+      user: {password}
   end
 
 end
