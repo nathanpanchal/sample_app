@@ -61,4 +61,8 @@ class PasswordResetsTest < ActionDispatch::IntegrationTest
     assert_redirected_to user
   end
 
+  test 'expired token' do
+
+  end
+
 end
