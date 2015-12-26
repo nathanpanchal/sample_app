@@ -69,4 +69,9 @@ class UsersControllerTest < ActionController::TestCase
     assert_not @other_user.reload.admin?
   end
 
+  test 'show user only if activated' do
+    log_in_as(@user)
+
+  end
+
 end

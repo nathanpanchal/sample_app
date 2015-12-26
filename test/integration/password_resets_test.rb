@@ -70,7 +70,7 @@ class PasswordResetsTest < ActionDispatch::IntegrationTest
     patch password_reset_path(@user.reset_token),
       email: @user.email,
       user: {password: 'foobar', password_confirmation: 'foobar'}
-    assert_response :redirected
+    assert_response :redirect
     follow_redirect!
     # checks if the word expired appears in the redirected html body
     assert_match /expired/i , response.body
