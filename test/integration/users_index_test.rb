@@ -39,6 +39,4 @@ class UsersIndexTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test ''
-
 end
