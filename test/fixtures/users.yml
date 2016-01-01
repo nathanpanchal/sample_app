@@ -29,6 +29,12 @@ mallory:
   activated: true
   activated_at: <%= Time.zone.now %>
 
+jack:
+  name: Jack Stack
+  email: jack@example.gov
+  password_digest: <%= User.digest('password') %>
+  activated: false
+
 <% 30.times do |n| %>
 user_<%= n %>:
   name:  <%= "User #{n}" %>

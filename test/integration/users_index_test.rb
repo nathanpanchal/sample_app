@@ -30,4 +30,15 @@ class UsersIndexTest < ActionDispatch::IntegrationTest
     assert_select 'a', text: 'delete', count: 0
   end
 
+  test 'index of users only displays activated users' do
+    log_in_as(@admin)
+    get users_path
+    first_page_of_users = User.paginate(page: 1)
+    first_page_of_users.each do |user|
+      assert user.activated?
+    end
+  end
+
+  test ''
+
 end
