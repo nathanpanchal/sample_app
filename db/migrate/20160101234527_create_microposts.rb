@@ -6,5 +6,7 @@ class CreateMicroposts < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+    # adds an index to user id and creation date columns
+    add_index :microposts, [:user_id, :created_at]
   end
 end
