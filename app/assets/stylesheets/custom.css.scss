@@ -207,3 +207,37 @@ aside {
     border-bottom: 1px solid $gray-lighter;
   }
 }
+
+// Microposts
+
+.microposts {
+  list-style: none;
+  padding: 0;
+  li {
+    passubg: 10px 0;
+    border-top: 1px solid #e8e8e8;
+  }
+  .user {
+    margin-top: 5em;
+    paddint-top: 0;
+  }
+  .content {
+    display: block;
+    margin-left: 60 px;
+    img {
+      display: block;
+      padding: 5px 0;
+    }
+  }
+  .timestamp {
+    color: $gray-light;
+    display: block;
+    margin-left: 60px;
+  }
+  //the gravatar class is implicit on line 2 of micropost.html.erb
+  .gravatar {
+    float: left;
+    margin-right: 10px;
+    margin-top: 5px;
+  }
+}
