@@ -20,11 +20,13 @@ module SessionsHelper
 
   # Returns the user corresponding to the remember token cookie otherwise returns nil.
   def current_user
+    # if the session has a user IDin the current session then assign it to user_id.
     if (user_id = session[:user_id])
-      # @current_user = @current_user or a user with the matching ID in the database
+      # @current_user = current_user or a user with the matching ID in the database
       @current_user ||= User.find_by(id: user_id)
     elsif (user_id = cookies.signed[:user_id])
       user = User.find_by(id: user_id)
+      # if the user exists and is authenticated then log in the user and set them at the current user.
       if user && user.authenticated?(:remember, cookies[:remember_token])
         log_in user
         @current_user = user
