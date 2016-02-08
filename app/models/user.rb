@@ -77,6 +77,13 @@ class User < ActiveRecord::Base
     reset_sent_at < 2.hours.ago
   end
 
+  # Define s a proto-feed.
+  # See "following users" for the full implementation
+  # equivalent to self.microposts
+  def feed
+    Micropost.where('user_id = ?', id)
+  end
+
   private
 
     # normalizes emails
