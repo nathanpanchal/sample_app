@@ -29,6 +29,8 @@ class MicropostsController < ApplicationController
 
     def correct_user
       @micropost = current_user.microposts.find_by(id: params[:id])
+      # If the line above is not able to find the micropost then redirect to the root url.
+      # Prevents users from deleting other's microposts.
       redirect_to root_url if @micropost.nil?
     end
 
