@@ -1,7 +1,12 @@
 require 'test_helper'
 
-class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
-  # test "the truth" do
-  #   assert true
-  # end
+class MicropostsInterfaceTest < ActionDispatch::IntegrationTes
+
+  def setup
+    @user = users(:michael)
+  end
+
+  test 'micropost interface' do
+
+  end
 end
