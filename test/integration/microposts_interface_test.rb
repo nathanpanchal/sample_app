@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class MicropostsInterfaceTest < ActionDispatch::IntegrationTes
+class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
 
   def setup
     @user = users(:michael)
@@ -10,10 +10,11 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTes
     log_in_as(@user)
     get root_path
     # Attempt to post a micropost without content
-    assert_no_difference 'micropost.count' do
+    assert_no_difference 'Micropost.count' do
       post microposts_path, micropost: {content: ''}
     end
     assert_select 'div#error_explanation'
+    # Valid submissions
     content = 'This micropost really ties the room together'
     assert_difference 'Micropost.count', 1 do
       post microposts_path, micropost: {content: content}
@@ -21,8 +22,8 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTes
     assert_redirected_to root_url
     follow_redirect!
     assert_match content, response.body
-    # Delete a post.
-    assert_select 'a', text: 'delete'
+    # Delete a post
+    assert_select 'a', text: 'Delete post'
     first_micropost = @user.microposts.paginate(page: 1).first
     assert_difference 'Micropost.count', -1 do
       delete micropost_path(first_micropost)
